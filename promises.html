@@ -4,33 +4,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Promises</title>
+  <title>JavaScript Review: Promises</title>
 </head>
 
 <body>
-  <h1>Promises</h1>
+  <h1>JavaScript Review: Promises</h1>
+  <h2 class="title">The Rick and Morty API</h2>
   <div class="app" id="app">
-    <section class="character" id="character"></section>
-    <section class="description" id="description"></section>
+    <!-- <div class="contain-character"> -->
+      <!-- <section class="character" id="character"></section> -->
+      <!-- <section class="description" id="description"></section> -->
+
+    <!-- </div> -->
+    <!-- <button class="button" id="button">other character</button> -->
   </div>
 
   <script>
     const appElement = document.getElementById('app')
-    const characterElement = document.getElementById('character')
-    const descriptionElement = document.getElementById('description')
+    // const characterElement = document.getElementById('character')
+    // const descriptionElement = document.getElementById('description')
+    // const buttonElement = document.getElementById('button')
 
-    const idRandom = Math.floor(Math.random()*826)
+    const idRandom = Math.floor(Math.random() * 826)
+    console.log(idRandom)
     console.log(idRandom)
 
     const renderCharacter = ({
-        imageCharacter, 
-        nameCharacter, 
-        speciesDescription, 
-        genderDescription, 
-        originDescription,
-        statusDescription, 
-        locationDescription
-      }) => {
+      imageCharacter,
+      nameCharacter,
+      speciesDescription,
+      genderDescription,
+      originDescription,
+      statusDescription,
+      locationDescription
+    }) => {
+      const containCharacterElement = document.createElement('div')
+      const characterImageElement = document.createElement('section')
+      const descriptionElement = document.createElement('section')
       const imageCharacterElement = document.createElement('img')
       const nameCharacterElement = document.createElement('h2')
       const speciesDescriptionElement = document.createElement('p')
@@ -38,9 +48,12 @@
       const originDescriptionElement = document.createElement('p')
       const statusDescriptionElement = document.createElement('p')
       const locationDescriptionElement = document.createElement('p')
+      const buttonElement = document.createElement('button')
 
+      containCharacterElement.classList.add('contain-character')
+      descriptionElement.style = 'padding: 0 20px 0 0'
       imageCharacterElement.src = imageCharacter
-      imageCharacterElement.style ='border-radius: 20px'
+      imageCharacterElement.style = 'border-radius: 20px 0 0 20px'
       nameCharacterElement.innerText = nameCharacter.toUpperCase()
       nameCharacterElement.style = 'text-align: center'
       speciesDescriptionElement.innerText = `SPECIES:  ${speciesDescription}`
@@ -48,9 +61,15 @@
       originDescriptionElement.innerText = `ORIGIN: ${originDescription}`
       statusDescriptionElement.innerText = `STATUS:  ${statusDescription}`
       locationDescriptionElement.innerText = `LOCATION: ${locationDescription}`
-
-
-      characterElement.appendChild(imageCharacterElement)
+      buttonElement.classList.add('button')
+      buttonElement.innerText = 'other character'
+      buttonElement.addEventListener('click', ()=>location.reload())
+      
+      appElement.appendChild(containCharacterElement)
+      appElement.appendChild(buttonElement)
+      containCharacterElement.appendChild(characterImageElement)
+      containCharacterElement.appendChild(descriptionElement)
+      characterImageElement.appendChild(imageCharacterElement)
       descriptionElement.appendChild(nameCharacterElement)
       descriptionElement.appendChild(speciesDescriptionElement)
       descriptionElement.appendChild(genderDescriptionElement)
@@ -58,40 +77,45 @@
       descriptionElement.appendChild(statusDescriptionElement)
       descriptionElement.appendChild(locationDescriptionElement)
     }
-    const renderDescription = () => {
-      console.log('hello')
+    // const renderDescription = () => {
+    //   console.log('hello')
+    // }
+
+    const printApi = (number) => {
+      fetch(`https://rickandmortyapi.com/api/character/${number}`)
+        .then((response) => {
+          // console.log("termina con estado " + response.status)
+          console.log(response)
+          // debugger
+          return response.json()
+        })
+        .then((data) => {
+          console.log(data)
+          const imageCharacter = data.image
+          const nameCharacter = data.name
+
+          const speciesDescription = data.species
+          const genderDescription = data.gender
+          const originDescription = data.origin.name
+          const statusDescription = data.status
+          const locationDescription = data.location.name
+          renderCharacter({
+            imageCharacter,
+            nameCharacter,
+            speciesDescription,
+            genderDescription,
+            originDescription,
+            statusDescription,
+            locationDescription
+          })
+        })
+      // .catch((e => console.error(e)))
     }
+    printApi(idRandom)
+    // const page = [1,2,3,4,5]
+    // page.forEach(Element => printApi(idRandom))
 
-    fetch(`https://rickandmortyapi.com/api/character/${idRandom}`)
-    .then((response) => {
-      // console.log("termina con estado " + response.status)
-      console.log(response)
-      // debugger
-      return response.json()
-    })
-    .then((data)=>{
-      console.log(data)
-      const imageCharacter = data.image
-      const nameCharacter = data.name
-
-      const speciesDescription = data.species
-      const genderDescription = data.gender
-      const originDescription = data.origin.name
-      const statusDescription = data.status
-      const locationDescription = data.location.name
-      renderCharacter({
-        imageCharacter, 
-        nameCharacter, 
-        speciesDescription, 
-        genderDescription, 
-        originDescription,
-        statusDescription, 
-        locationDescription
-      })
-     
-    })
-
-    // .catch((e => console.error(e)))
+    // buttonElement.addEventListener('click', () => location.reload())
   </script>
 
   <!-- introduction a promises -->
@@ -158,7 +182,7 @@
       //   'difuidghiofjg': 'dfhidoisdj',
       // },
     // })
-    
+
   </script>
   <!-- POST -->
   <script>
@@ -185,6 +209,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgb(37, 37, 37);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: aliceblue;
   }
 
@@ -192,11 +217,52 @@
     color: rgb(251, 255, 0);
     text-align: center;
   }
-  .app{
+
+  h2:hover {
+    color: orange;
+  }
+
+  .title {
+    color: aquamarine;
+    text-align: center;
+    font-size: xx-large;
+  }
+
+  .title:hover {
+    color: aquamarine;
+  }
+
+  .app {
     margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
     display: flex;
-    gap:  50px;
+    flex-direction: column;
+    gap: 50px;
     align-items: center;
+    justify-content: center;
+  }
+
+  .contain-character {
+    margin: 20px;
+    padding: 0px;
+    height: 300px;
+    border-radius: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    box-shadow: 0 0 3px rgb(255, 255, 255);
+    background-color: rgb(68, 68, 68);
+
+  }
+
+  button {
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(66, 217, 167);
+    color: orange;
+    font-weight: bolder;
   }
 </style>
 
