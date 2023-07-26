@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Functions</title>
+</head>
+<body>
+  <h1>Functions</h1>
+  <h2>Functions</h2>
+  <pre>
+    function getCompleteName(name, surname){
+      return(name + " " + surname)
+    }
+    console.log(getCompleteName('Jose', 'J.'))
+  </pre>
+  <script>
+    function getCompleteName(name, surname){
+      return(name + " " + surname)
+    }
+    console.log(getCompleteName('Jose', 'J.'))
+  </script>
+
+  <h2>Anonymous Functions</h2>
+  <pre>
+    const getFullName = function(name, surname){
+      return name + " " + surname
+    }
+  </pre>
+  <script>
+    const getFullName=function(name, surname){
+      return name + " " + surname
+    }
+    console.log(getFullName('Roberto', 'S.'))
+  </script>
+
+  <h2>Arrows Functions</h2>
+  <pre>
+    () => {}
+    const getName = (name, surname) => {
+      return name + " " + surname
+    }
+  </pre>
+  <script>
+    const getName = (name, surname) => {
+      return name + " " + surname
+    }
+    console.log(getName('Alejandro', 'D.'))
+
+    const greet = (name) => 'hello '+ name
+    // greet("Fernando")
+
+    const greet2 = () => {
+      const greet1 = 'Hey there'
+      return 'There are no parameters = ()'
+    }
+    const result1 = greet2()
+    console.log(result1)
+
+    const greet4 = _ => {
+      const greet3 = 'Hey there'
+      return 'There are no parameters = _'
+    }
+    const result2 = greet4()
+    console.log(result2)
+  </script>
+
+  <h2> function !== arrow function</h2>
+  <pre>
+    person1 = {
+      name: 'Steve',
+      surname: 'Perry',
+      getAllName:function(){
+        return `${this.name} ${this.surname}`
+      }
+    }
+    person2 = {
+      name: 'Steve',
+      surname: 'Perry',
+      getAllName:()=>{
+        return `${this.name} ${this.surname}`
+      }
+    }
+  </pre>
+  <script>
+    person1 = {
+      name: 'Steve',
+      surname: 'Perry',
+      getAllName:function(){
+        // return `${this.name} ${this.surname}`
+        console.log(this)
+      }
+    }
+    person2 = {
+      name: 'Steve',
+      surname: 'Perry',
+      getAllName:()=>{
+        // return `${this.name} ${this.surname}`
+        console.log(this)
+      }
+    }
+  </script>
+
+  <section>
+    <h3>other example</h3>
+    <button id="myButton">click me</button>
+    <script>
+      const anonymousFunction = function () {
+        console.log(this)
+      }
+      const arrowFunction = () => {
+        console.log(this)
+      }
+      document.getElementById("myButton").addEventListener("click", arrowFunction)
+    </script>
+  </section>
+
+</body>
+<style>
+    html{
+    height: 100%;
+    background-color: rgb(63, 63, 63);
+    color: rgb(255, 248, 157);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  h1{
+    color: rgb(246, 255, 0);
+  }
+</style>
+</html>

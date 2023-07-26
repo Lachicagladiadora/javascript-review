@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this</title>
+</head>
+<body>
+  <h1>this</h1>
+  <dfn>objeto contexto de JavaScript en el cual se esta ejecutando el codigo actual</dfn>
+  
+  <div class="container" id="container"></div>
+  <div class="type" id="type"></div>
+  <script>
+    const containerElement = document.getElementById("container")
+    const typeElement = document.getElementById("type")
+
+    const getRandomId = _ => Math.floor(Math.random()*150)
+    console.log("arrow function", getRandomId())
+
+    const example1 = {
+      getRandomId: function(){
+        return Math.floor(Math.random()*150)
+      }
+    }
+    console.log("anonymous function ", example1.getRandomId())
+
+    class API {
+      BASE_URL = 'https://pokeapi.co/api/v2/pokemon/'
+      async fetch(id){
+        const searchId = id || this.id
+        const response = await fetch(`${this.BASE_URL}${searchId}`)
+        const pokemon = await response.json()
+        this.pokemon = pokemon
+        return pokemon
+        console.log(this)
+      }
+    }
+
+    // const api = new API
+    // api.fetch(56)
+    // .then((data)=>{
+    //   containerElement.textContent = data.name
+    // })
+
+    class Pokemon extends API{
+      constructor(id){
+        super(id)
+        this.id=id
+        console.log(this)
+      }
+      containerElement = document.getElementById("container")
+      typeElement = document.getElementById("type")
+
+      renderName(){
+        this.containerElement.textContent = `Pokemon found "${this.pokemon.name}"`
+      }
+      renderType(){
+        this.typeElement.textContent = `Type ${this.pokemon.types[0].type.name}`
+      }
+    }
+  
+    console.log(this)
+
+    // const pokemon = {
+    //   containerElement: document.getElementById("container"),
+    //   renderName: function(name){
+    //     this.containerElement.textContent = `Pokemon found ${name}`
+    //   },
+    //   renderType: function(type){
+    //     this.containerElement.textContent = `Type pokemon ${type}`
+    //   }
+    // }
+    // pokemon.renderName('bulbasur')
+
+    // const renderName = pokemon.renderName
+    // const nameWithBind = renderName.bind(pokemon)
+    // nameWithBind('Ash')
+    // renderName.call(pokemon, 'Brook')
+    // renderName.apply(pokemon, ['Misty'])
+
+    const pokemon = new Pokemon(56)
+    pokemon.fetch()
+    .then((p)=>{
+      pokemon.renderName(p.name)
+      pokemon.renderType(p.type)
+    })
+  </script>
+
+</body>
+<style>
+  html{
+    height: 100%;
+    background-color: rgb(63, 63, 63);
+    color: aliceblue;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  h1{
+    color: rgb(246, 255, 0);
+  }
+  .container{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    margin-top: 50px;
+    color: #ca1963;
+    font-size: 50px;
+    text-transform: capitalize;
+  }
+  .type{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    margin-top: 50px;
+    color: #ca1963;
+    font-size: 20px;
+  }
+</style>
+</html>

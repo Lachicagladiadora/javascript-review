@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/javascript.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript review!</title>
+  </head>
+  <body>
+    <h1>JavaScript review!</h1>
+    <nav>
+      <ul>
+        <li><a href="functions.html" target="_blank">functions</a></li>
+        <li><a href="eventAndDom.html" target="_blank">event & DOM</a></li>
+        <li><a href="objects.html" target="_blank">objects</a></li>
+        <li><a href="this.html" target="_blank">this</a></li>
+        <li><a href="pokeApi.html" target="_blank">pokeApi</a></li>
+        <!-- <li><a href="pokeApi.html" target="_blank">pokeApi</a></li> -->
+      </ul>
+    </nav>
+
+    <div id="app"></div>
+
+  
+    <!-- <script type="module" src="/main.js"></script> -->
+    
+
+
+    <script>
+      // variables
+      // console.log(varVariable)
+      // var varVariable = "I'm var"
+
+      // function printVarGlobal() {
+      //   variableVar = 'Hello var'
+      // }
+      // printVarGlobal()
+      // console.log(variableVar)
+
+      // console.log(variableLet)
+      // let variableLet = 'Hello let'
+
+      // const variableConst = ['var', 'let', 'const']
+      // console.log(variableConst)
+      // variableConst.push('variable')
+      // console.log(variableConst)
+
+    </script>
+
+    <script>
+      // condirionals
+      // const test = !!('first condition' == 'first condition')
+      // !!('first condition' == 'first condition')
+      // Boolean('first condition' == 'first condition')
+      
+      // if('first condition' == 'first condition') console.log('return something');
+      
+      // ('first condition' == 'other condition')? console.log('true condition') : console.log('false condition');
+
+      // ('other condition' == 'second condition') && console.log('true condition') || console.log('false condition');
+    </script>
+
+    <script>
+      // Loops -> for
+      // for(let i in {one:'first', two:'second', three:'third', }){
+      //   console.log('element with "for in":',i)
+      // }
+      
+      // const objK = Object.keys({one:'first', two:'second', three:'third', })
+      // console.log('Object.keys',objK)
+
+      // const objV = Object.values({one:'first', two:'second', three:'third', })
+      // console.log('Object.values',objV)
+      
+      // const objE = Object.entries({one:'first', two:'second', three:'third', })
+      // console.log('Object.entries',objE)
+
+      // const flowers = {margarita:'yellow, brown', rose:'red, green, yellow', tulip: 'orange, green, yellow'}
+      // const newObject = {}
+      // for (const i in flowers) {
+      //   console.log('FLOWER: ',i)
+      //   console.log('elements from flower:',flowers[i])
+      //   newObject[i] = flowers[i]
+      //   console.log('newObject: ',newObject)
+      // }
+
+      // const newArray = [1,2,3,4]
+      // for(let i of newArray) {
+      //   console.log(i)
+      // }
+
+      // function objectArguments() {
+      //   console.log('arguments', arguments)
+      //   for(let i of arguments) {
+      //     console.log("DFB", i)
+      //   }
+      // }
+      // objectArguments()
+      // objectArguments(1,2, 7, 'rfgv')
+
+      // function objectWithTime() {
+      //   const otherObject = { months: 'january, february, march,april, may, june, july', seasons: 'winter, spring, fall, summer', countries: 'france, uk, portugal, japan'}
+      //   console.table(otherObject)
+      //   // console.count(otherObject)
+      //   // console.groupCollapsed(otherObject)
+      //   // console.trace(otherObject)
+      //   console.time('monthsTime: ')
+      //   for(let i in otherObject) {
+      //     console.log('hello', i)
+      //   }
+      //   console.timeEnd('monthsTime: ')
+      // }
+      // objectWithTime()
+    </script>
+
+    <script>
+      // this
+      // console.log('What is "this"?', this) // hace referencia al contexto
+      
+      // const anyObject = {
+      //   fun: function () {
+      //     console.log('What is "this"?', this) 
+      //   }
+      // }
+      // anyObject.fun()
+
+      // function someObject() {
+      //   // console.log('What is "this"?', this)
+      //   console.log(someObject)
+      //   console.dir(someObject)
+      // }
+      // new someObject()
+
+      // const someObject =() => {
+      //   console.log('What is "this"?', this)
+      // }
+      // new someObject()
+
+      // class someClass {
+      //   constructor(){
+      //     // this.method1()
+      //     console.log('initialized')
+      //   }
+      //   method1(){
+      //     console.log(this)
+
+      //   }
+      // }
+      // const test = new someClass()
+      // const test2 = new someClass()
+      // const test3 = new someClass()
+      // const test4 = new someClass()
+      // test.method1()
+    </script>
+
+
+
+
+
+    <script>
+      // closures
+      // function returnFunction(firstParameter) {
+      //   console.log(`%cHello father`,'color: pink')
+      //   let counter = firstParameter
+      //   return function(otherParameter) {
+      //     console.log(`%cHello son`,'color:#adedfa')
+      //     counter = counter + otherParameter || counter + 1
+      //     return counter
+      //     // return function() {
+      //     // console.log(`%cHello grandson`,'color: orange')
+      //     // }
+      //   }
+      // }
+      // // console.log(returnFunction)
+      // // console.log(`%c${returnFunction()}`, 'background: #222; color: #bada55');
+      // // console.log(returnFunction()())
+      // // console.log(returnFunction()()())
+
+      // const saveValue = returnFunction(0)
+      // saveValue(20)
+      // saveValue()
+
+      // const otherSaveValue = returnFunction(8)
+      // otherSaveValue(2)
+      // // let theReturned2 = 'returned 2'
+
+      // console.log(saveValue(), otherSaveValue())
+      // // console.log(`%c${theReturned2}`, 'color: #127878')
+
+      // const closure = x => y => x + y
+      // const suma1 = closure(1)
+      // console.log(suma1(2))
+
+      // // function executeFunction(functionParameter, stringParameter) {
+      // //   aFunction()
+      // //   console.log(stringParameter)
+      // // }
+    </script>
+
+<!-- functions -->
+<script>
+//   function hello(name='Krypto'){
+//     return `hello ${name}`
+//   }
+//   // hello('K')
+
+//   function Inventory(username){
+//     this.username = username;
+//     this.articles=[];
+//   }
+//   Inventory.prototype.add = function(article, cantidad){
+//     this, articles[article] = cantidad;
+//   }
+
+// const books = new Inventory('books')
+// books.getUsername()
+
+
+// class Book{
+//   constructor({title, author, pages, edition, languages}){
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages
+//     this.edition = edition;
+//     this.synopsis = synopsis;
+//     this.languages = [];
+//   };
+//   getDescription(){
+//     console.log(Book.title)
+//   }
+//   // getEdition(){
+//   //   console.log(this.edition)
+//   // };
+// }
+// const book1 = new Book({title:'rayuela', author:'julio'})
+
+function Balm({type, form, color}){
+  this.type = type;
+  this.form = form;
+  this.color = color;
+}
+const lipBalm = new Balm({type: 'lip creme', form: 'bar', color:'rouge'})
+console.log(lipBalm)
+
+class Eyeliner{
+  constructor({name, collection, type, color}){
+    this.name=name;
+    this.collection=collection;
+    this.type=type;
+    this.color=color;
+  }
+  description(){
+    console.log(`eyeliner ${this.name} of ${this.collection} collection`)
+  }
+}
+
+</script>
+
+
+  </body>
+  <style>
+    :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+    body {
+  margin: 0;
+  padding: 0;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: rgb(251, 255, 0);
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: initial;
+}
+  </style>
+</html>

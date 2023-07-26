@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>event & DOM</title>
+</head>
+<body>
+  <h1>event & DOM</h1>
+
+      <div>
+      <button class='button'>1</button>
+      <button class='button'>2</button>
+      <button class='button'>3</button>
+      <button class='button'>4</button>
+      <button class='button'>5</button>
+      <button class='button'>6</button>
+      <button class='button'>7</button>
+    </div>
+  
+        <script>
+      // event & DOM
+      const buttonsElements = document.querySelectorAll('.button')
+      if(!buttonsElements) console.warn('not exist class "button" for the "buttonsElements"')
+      buttonsElements.forEach((element, index) => {
+        console.log(element)
+        element.addEventListener('click', event => {
+          console.log(event.target.innerHTML)
+          event.target.style.color = 'red'
+        })
+      })
+    </script>
+</body>
+<style>
+  :root{
+    margin: 0%;
+    padding: 0%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(37, 37, 37);
+    color: aliceblue;
+  }
+  h1{
+    color: rgb(251, 255, 0);
+  }
+</style>
+</html>

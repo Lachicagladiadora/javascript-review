@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Review: class</title>
+</head>
+
+<body>
+  <h1>pokeAPI</h1>
+
+  <h2></h2>
+  <h2>Some Pokemon</h2>
+
+  <div class="pokemon">
+    <div id="app"></div>
+    <section class="description" id="description">
+      <div id="type">
+        <h3>TYPE</h3>
+      </div>
+      <div id="abilities">
+        <h3>ABILITIES</h3>
+    </section>
+    </div>
+  </div>
+
+  <button class="other-pokemon" id="button">other pokemon</button>
+
+  <script>
+    // class
+    // const pokemonImgElement = document.getElementById("image-pokemon")
+    const appElement = document.getElementById('app')
+    const buttonElement = document.getElementById("button")
+
+    const idPokemon = Math.floor(Math.random()*350)
+    // const imgPokemon 
+     
+    class pokemon {
+      constructor(){}
+
+      apiPokemon(){
+        // console.log(idPokemon)
+        console.log('running')
+        return fetch(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`).then(response => 
+          response.json()
+        )
+          // .then(data => {
+          // console.log('it is running pokemon', data)
+          // })
+      }
+      renderDataPokemon(imgFrontPokemon, imgBackPokemon, name){
+        const nameElement = document.createElement('h3')
+        const imgFrontElement = document.createElement('img')
+        const imgShinyElement = document.createElement('img')
+        nameElement.innerText=name.toUpperCase()
+        nameElement.style = 'text-align: center'
+        imgFrontElement.src = imgFrontPokemon
+        imgFrontElement.width = '250'
+        imgShinyElement.src = imgBackPokemon
+        imgShinyElement.width = '250'
+        // abilityElement.innerText= `${ability}`
+        appElement.appendChild(nameElement)
+        appElement.appendChild(imgFrontElement)
+        appElement.appendChild(imgShinyElement)
+        // appElement.innerHTML('h3', name)
+      }
+    }
+    const somePokemon = new pokemon()
+    const dataPokemon = somePokemon.apiPokemon().then(data => {
+      console.log('it is running pokemon ', data)
+    
+    const typePokemon = data.types.forEach(element => {
+      const typePokemonElement = document.getElementById('type')
+      const typeElement = document.createElement('p')
+      typeElement.innerText = element.type.name
+      typePokemonElement.appendChild(typeElement)
+    })
+      
+    const abilitiesPokemon = data.abilities.forEach(element => {
+      const abilitiesPokemonElement = document.getElementById("abilities")
+        const abilityElement = document.createElement('p')
+        abilityElement.innerText = element.ability.name
+        abilitiesPokemonElement.appendChild(abilityElement)
+      })
+      // console.log(abilitiesPokemon)
+      somePokemon.renderDataPokemon(data.sprites.front_default, data.sprites.front_shiny, data.name, typePokemon, abilitiesPokemon)
+      // console.log(data.abilities[0].ability.name)
+      // console.log(data.abilities[1].ability.name)
+      // console.log(data.abilities[2].ability.name)
+    })
+    
+    console.log(dataPokemon)
+    const otherPokemon = () => {
+      console.log('hello')
+      // window.reload
+      location.reload()
+    }
+    buttonElement.addEventListener('click', otherPokemon)
+  </script>
+</body>
+<style>
+  :root {
+font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+/* line-height: 1.5; */
+font-weight: 400;
+
+color-scheme: light dark;
+color: rgba(255, 255, 255, 0.87);
+background-color: #1b1a1a;
+
+font-synthesis: none;
+text-rendering: optimizeLegibility;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+-webkit-text-size-adjust: 100%;
+}
+  body {
+margin: 0;
+padding: 0;
+display: flex;
+flex-direction: column;
+place-items: center;
+justify-content: center;
+min-width: 320px;
+min-height: 100vh;
+}
+h1{
+    color: rgb(251, 255, 0);
+  }
+h2, h3 {
+font-size: 30px;
+/* line-height: 1.1; */
+}
+.pokemon{
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+.other-pokemon{
+  padding: 10px;
+  color: yellow;
+  border-radius: 10px;
+  font-weight: bold;
+  /* box-shadow: none; */
+}
+.other-pokemon:hover{
+  background-color: #c0bd03;
+  color: #1b1a1a;
+}
+</style>
+</html>
