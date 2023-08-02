@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <h1 class="title">The Cocktail</h1>
+  </header>
+  <main>
+    <section class="description-contain"></section>
+    <section class="image-contain"></section>
+  </main>
+
+  <script>
+    const descriptionContainElement = document.getElementById("description-contain")
+    const imageContainElement = document.getElementById("image-contain")
+
+    const paintApi = (urlImage) => {
+      const imageElement = document.createElement('img')
+
+      imageElement.src = urlImage
+
+      imageContainElement.appendChild(imageElement)
+    }
+
+    const onApi =() => {
+      return (
+        fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+          .then(response => response.json())
+          // .then(data => )
+        )
+      
+    }
+    // const urlImage = onApi().then(data => {
+    //   return paintApi(data.drinks[0].strDrinkThumb)
+    // })
+    // console.log(urlImage)
+    const dataDrink = onApi().then(data => {
+      console.log(data.drinks[0].strDrink, data.drinks[0].strCategory, data.drinks[0].strDrinkThumb) 
+      return paintApi(data.drinks[0].strDrinkThumb)
+    })
+    // paintApi(urlImage)
+  </script>
+</body>
+<style>
+  :root{
+    margin: 0%;
+    padding: 0%;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+
+  }
+  .title{
+    color: orange;
+  }
+</style>
+</html>

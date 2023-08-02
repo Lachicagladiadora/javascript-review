@@ -87,16 +87,16 @@
       name: 'Steve',
       surname: 'Perry',
       getAllName:function(){
-        // return `${this.name} ${this.surname}`
         console.log(this)
+        return `${this.name} ${this.surname}`
       }
     }
     person2 = {
-      name: 'Steve',
-      surname: 'Perry',
+      name: 'Lou',
+      surname: 'Gram',
       getAllName:()=>{
-        // return `${this.name} ${this.surname}`
         console.log(this)
+        return `${this.name} ${this.surname}`
       }
     }
   </script>
@@ -109,6 +109,8 @@
         console.log(this)
       }
       const arrowFunction = () => {
+        console.log(person1.getAllName())
+        console.log(person2.name+ ' ' + person2.surname)
         console.log(this)
       }
       document.getElementById("myButton").addEventListener("click", arrowFunction)
