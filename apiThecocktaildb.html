@@ -1,105 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <header>
+      <h1 class="title">The Cocktail</h1>
+    </header>
+    <main class="main">
+      <section class="description-contain" id="description-contain"></section>
+      <section class="image-contain" id="image-contain"></section>
+    </main>
 
-<body>
-  <header>
-    <h1 class="title">The Cocktail</h1>
-  </header>
-  <main class="main">
-    <section class="description-contain" id="description-contain"></section>
-    <section class="image-contain" id="image-contain"></section>
-  </main>
+    <script>
+      const descriptionContainElement = document.getElementById(
+        "description-contain"
+      );
+      const imageContainElement = document.getElementById("image-contain");
 
-  <script>
-    const descriptionContainElement = document.getElementById("description-contain")
-    const imageContainElement = document.getElementById("image-contain")
+      const render = ({
+        urlImage,
+        name,
+        category,
+        alcoholContent,
+        instructions,
+      }) => {
+        const imageElement = document.createElement("img");
+        const nameElement = document.createElement("h2");
+        const categoryElement = document.createElement("strong");
+        const categoryDescriptionElement = document.createElement("p");
+        const alcoholContentElement = document.createElement("strong");
+        const alcoholContentDescriptionElement = document.createElement("p");
+        const titleInstructionElement = document.createElement("h2");
+        const alcoholInstructionsElement = document.createElement("section");
 
-    const render = ({
-      urlImage,
-      name, 
-      category, 
-      alcoholContent
-    }) => {
-      const imageElement = document.createElement('img')
-      const nameElement = document.createElement('h2')
-      const categoryElement = document.createElement('strong')
-      const categoryDescriptionElement = document.createElement('p')
-      const alcoholContentElement = document.createElement('strong')
-      const alcoholContentDescriptionElement = document.createElement('p')
+        imageElement.src = urlImage;
+        imageElement.style = "height: 400px; border-radius: 0px 10px 10px 0px";
+        nameElement.innerText = name;
+        nameElement.style = "color: yellow";
+        categoryElement.innerText = "Category";
+        categoryDescriptionElement.innerText = category;
+        alcoholContentElement.innerText = "Alcohol Content";
+        alcoholContentDescriptionElement.innerText = alcoholContent;
+        titleInstructionElement.innerText = "Instructions";
+        alcoholInstructionsElement.innerText = instructions;
 
-      imageElement.src = urlImage
-      imageElement.style = 'height: 400px; border-radius: 10px'
-      nameElement.innerText = name
-      nameElement.style = 'color: yellow'
-      categoryElement.innerText = 'Category'
-      categoryDescriptionElement.innerText = category
-      alcoholContentElement.innerText = 'Alcohol Content'
-      alcoholContentDescriptionElement.innerText = alcoholContent
+        imageContainElement.appendChild(imageElement);
+        descriptionContainElement.appendChild(nameElement);
+        descriptionContainElement.appendChild(categoryElement);
+        descriptionContainElement.appendChild(categoryDescriptionElement);
+        descriptionContainElement.appendChild(alcoholContentElement);
+        descriptionContainElement.appendChild(alcoholContentDescriptionElement);
+        descriptionContainElement.appendChild(titleInstructionElement);
+        descriptionContainElement.appendChild(alcoholInstructionsElement);
+      };
 
-      imageContainElement.appendChild(imageElement)
-      descriptionContainElement.appendChild(nameElement)
-      descriptionContainElement.appendChild(categoryElement)
-      descriptionContainElement.appendChild(categoryDescriptionElement)
-      descriptionContainElement.appendChild(alcoholContentElement)
-      descriptionContainElement.appendChild(alcoholContentDescriptionElement)
+      const onApi = () => {
+        fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            const urlImage = data.drinks[0].strDrinkThumb;
+            const name = data.drinks[0].strDrink;
+            const category = data.drinks[0].strCategory;
+            const alcoholContent = data.drinks[0].strAlcoholic;
+            const instructions = data.drinks[0].strInstructions;
+            console.log(urlImage);
+            console.log(name);
+            render({
+              urlImage,
+              name,
+              category,
+              alcoholContent,
+              instructions,
+            });
+          });
+      };
+      onApi();
+    </script>
+  </body>
+  <style>
+    :root {
+      margin: 0%;
+      padding: 0%;
+      height: 100%;
+      width: 100%;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgb(255, 255, 255);
     }
 
-    const onApi = () => {
-      fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-          const urlImage = data.drinks[0].strDrinkThumb
-          const name = data.drinks[0].strDrink
-          const category = data.drinks[0].strCategory
-          const alcoholContent = data.drinks[0].strAlcoholic
-          console.log(urlImage)
-          console.log(name)
-          render({
-            urlImage,
-            name,
-            category,
-            alcoholContent
-          })
-        })
-
+    .title {
+      color: orange;
     }
-    onApi()
-  </script>
-</body>
-<style>
-  :root {
-    margin: 0%;
-    padding: 0%;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgb(255, 255, 255);
 
-  }
+    .main {
+      display: flex;
+      flex-direction: row;
+    }
 
-  .title {
-    color: orange;
-  }
-
-  .main{
-    display: flex;
-    flex-direction: row;
-  }
-
-
-  .description-contain{
-    width: 400px;
-  }
-</style>
-
+    .description-contain {
+      width: 400px;
+      border-radius: 10px 0px 0px 10px;
+      padding: 0px 40px;
+      box-shadow: 0 0 1px white;
+    }
+  </style>
 </html>
