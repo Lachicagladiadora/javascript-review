@@ -14,12 +14,17 @@
       <section class="description-contain" id="description-contain"></section>
       <section class="image-contain" id="image-contain"></section>
     </main>
+    <button type="button" id="cocktail-random">Cocktail random</button>
 
     <script>
       const descriptionContainElement = document.getElementById(
         "description-contain"
       );
       const imageContainElement = document.getElementById("image-contain");
+
+      const randomButtonElement = document.getElementById("cocktail-random")
+
+      randomButtonElement.classList.add('random-button')
 
       const render = ({
         urlImage,
@@ -80,6 +85,11 @@
           });
       };
       onApi();
+
+      randomButtonElement.addEventListener("click", ()=>{
+        onApi()
+        location.reload()
+      })
     </script>
   </body>
   <style>
@@ -109,6 +119,13 @@
       border-radius: 10px 0px 0px 10px;
       padding: 0px 40px;
       box-shadow: 0 0 1px white;
+    }
+
+    .random-button{
+      position: absolute;
+      top: 80%;
+      right: 50%;
+      transform: translate(-50%, -80%);
     }
   </style>
 </html>
